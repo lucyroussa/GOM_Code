@@ -44,14 +44,22 @@ for site_i in [19, 21, 26]:
 print(f_groups_df)
 
 #plot
-x = ['in shore', 'mid', 'off shore']
+fig, ax = plt.subplots(layout='constrained')
+x = np.arange(3)
+width = 0.25 # the width of the bars
+multiplier = 0
+offset = 0
 previous = [0] * len(f_groups_df.loc[f_groups_df.index[0]])
-for i in f_groups_df.index:
-    data = f_groups_df.loc[i]
-    plt.bar(x, data, bottom=previous, color=color_map[i])
-    previous += data
-ax = plt.gca()
-legend_elements = [Patch(facecolor=color_map[f], label=f) for f in f_groups]
+for obj in df_column_pairs:
+    df = obj['df']
+    for i in df.index:
+        data = df.loc[i]
+        plt.bar(x + offset, data, bottom=previous, color=color_map[i])
+        previous += data
+    multiplier += 1
+    previous = [0] * len(f_groups_df.loc[f_groups_df.index[0]])
+    offset = width * multiplier
+legend_elements = [Patch(facecolor=color_map[f], label=f) for f in list(f_groups) + taxas]
 ax.legend(handles=legend_elements)
 plt.title('f_groups_df')
 plt.show()
