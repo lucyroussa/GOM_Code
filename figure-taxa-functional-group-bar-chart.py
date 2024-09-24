@@ -21,11 +21,11 @@ color_map = {
     'CILIATES': '#111111',
     'DIATOMS': '#333333',
     'DINOFLAGELLATES': '#555555',
-    'NCM': '#EB37A6',
-    'Heterotroph': '#EFA3A1',
-    '?': '#EB3467',
-    'CM': '#EA645E',
-    'Phototroph': '#F6C2D3'}
+    'NCM': '#624E88',
+    'Heterotroph': '#7695FF',
+    '?': '#CB80AB',
+    'CM': '#FF4E88',
+    'Phototroph': '#E6D9A2'}
 df_column_pairs = [
     {'df': taxa_df, 'column': 'taxa', 'columns': taxas},
     {'df': f_groups_df, 'column': 'Functional_type', 'columns': f_groups}]
@@ -95,7 +95,7 @@ for transect, stations in transect_station_map.items():
         offset = width * multiplier
     legend_elements = [Patch(facecolor=color_map[f], label=f) for f in list(f_groups) + taxas]
     ax.legend(handles=legend_elements)
-    ax.set_xticks(x + 0.5, labels=[station_distance_map[i] for i in stations])
+    ax.set_xticks(x + 0.5, labels=[str(station_distance_map[i]) + '-' + str(i) for i in stations])
     plt.title(transect)
     plt.savefig(os.path.join(os.getcwd(), 'figures', transect + '.png'), dpi=200)
     plt.close()
