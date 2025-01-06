@@ -37,4 +37,4 @@ for index, row in counts.iterrows():
         counts.loc[index, i_name] = counts.loc[index, i_name] * factor / 1000
 
 counts.to_csv(os.path.join(root, 'carbon-taxa.csv'))
-print('done.')
+print('saved to ' + os.path.join(root, 'carbon-taxa.csv'))
