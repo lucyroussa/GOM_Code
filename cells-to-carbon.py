@@ -23,7 +23,7 @@ inv_d_abbrv = {v: k for k, v in depth_abbrvs.items()}
 for index, row in counts.iterrows():
     taxa = row['taxa'].title()
     for i_name in row.index:
-        if i_name in ['SAMPLE_ID', 'taxa', 'Functional_type', '9_surf', '47_surf', '33_surf']:
+        if i_name in ['SAMPLE_ID', 'taxa', 'Functional_type', '33_surf']:
             continue
         station, depth = i_name.split('_')
         station = int(station)
